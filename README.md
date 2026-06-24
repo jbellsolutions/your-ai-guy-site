@@ -36,11 +36,12 @@ All 15 repos were scanned for exposed secrets, credentials, and PII.
 | openswarm-builder | ✅ Clean | Only `.env.example` |
 | hermes-desktop-os1 | ✅ Clean | Swift credential stores are code templates, not real credentials |
 
-### ⚠️ Attention Needed (1 repo)
+### ⚠️ Attention Needed (2 repos)
 
 | Repo | Issue | Recommendation |
 |------|-------|----------------|
 | ai-integraterz-cold-email | Contains `data/tasks.db` (98KB SQLite), `data/concierge/journal.jsonl` (Slack message logs with user IDs), and 2 CSV exports with real prospect emails/names/companies in `data/exports/` | **Remove these from the repo or add to `.gitignore` + `git rm --cached`.** The `.gitignore` already excludes these paths but they were committed before the ignore rules were added. Run: `git rm --cached data/tasks.db data/concierge/journal.jsonl data/exports/*.csv` then commit. |
+| hermes-desktop-os1 | `scripts/do-password-ssh-install.py` contains hardcoded default password `Os1Bootstrap2026Xy` for SSH bootstrap on DigitalOcean droplets | **Replace with environment variable** (e.g., `os.environ.get("OS1_BOOTSTRAP_PASSWORD")`). Low risk (it's a bootstrap password, not a production credential), but shouldn't be in public repo. |
 
 ### 🔒 Not Yet Public (7 repos returned 404)
 
