@@ -1,0 +1,8 @@
+{
+  "name": "ai-guy-site",
+  "version": "1.0.0",
+  "description": "Your AI Guy — open source repos, coaching, and AI builder placement",
+  "scripts": {
+    "start": "npx serve@latest . --listen ${PORT:-3000} --single"
+  }
+}

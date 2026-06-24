@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your AI Guy — Open Source AI Software, Coaching & Builder Placement</title>
+<meta name="description" content="Everybody's selling AI something. We give the software away. 15+ years in go-to-market, biz ops, growth ops. Free repos, coaching from $100/mo, dedicated AI builders, and custom AI employee builds.">
+<style>
+  :root{
+    --ink:#1a1a2e; --ink2:#2d2d4a; --mut:#6b6b8d; --mut2:#9a9ab5;
+    --line:#e2e2ee; --line2:#d0d0e0;
+    --bg:#fafafe; --bg2:#f4f4fb; --card:#ffffff;
+    --gold:#e8a838; --gold-dk:#c8932e; --gold-lt:#fdf6e3;
+    --blue:#3b6ee5; --blue-lt:#e8f0fe; --blue-dk:#2a52b8;
+    --teal:#2bb89e; --teal-lt:#e0f7f2;
+    --orange:#e8753a; --orange-lt:#fdf0e8;
+    --green:#3ba776; --green-lt:#e6f5ed;
+    --red:#d4503e;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+  }
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ─── NAV ─── */
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .nav-brand{font-weight:800;font-size:18px;color:var(--ink);letter-spacing:-.3px}
+  .nav-brand span{color:var(--gold-dk)}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{color:var(--mut);font-weight:600;font-size:14px}
+  .nav-links a:hover{color:var(--ink);text-decoration:none}
+  .nav-cta{
+    background:var(--ink);color:#fff!important;padding:8px 18px;border-radius:8px;
+    font-weight:700;font-size:14px;transition:background .15s;
+  }
+  .nav-cta:hover{background:var(--ink2);text-decoration:none}
+
+  /* ─── HERO ─── */
+  .hero{padding:64px 0 48px;text-align:center}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    background:var(--gold-lt);color:var(--gold-dk);
+    font:700 12px/1 ui-monospace,monospace;letter-spacing:.5px;
+    padding:7px 14px;border-radius:999px;margin-bottom:20px;
+    border:1px solid #f0dfb5;
+  }
+  .hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1{
+    font-size:42px;font-weight:800;line-height:1.15;letter-spacing:-1px;
+    max-width:780px;margin:0 auto 16px;color:var(--ink);
+  }
+  .hero h1 .hl{
+    background:linear-gradient(90deg,var(--gold),var(--orange));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero .tagline{
+    font-size:19px;color:var(--mut);max-width:640px;margin:0 auto 28px;font-weight:500;
+  }
+  .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+  .btn{
+    display:inline-block;padding:14px 28px;border-radius:10px;
+    font-weight:700;font-size:15px;transition:transform .12s,box-shadow .12s;
+    text-decoration:none!important;cursor:pointer;border:none;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-primary{
+    background:linear-gradient(180deg,var(--gold),var(--gold-dk));color:#fff;
+    box-shadow:0 6px 24px rgba(232,168,56,.3);
+  }
+  .btn-secondary{
+    background:var(--card);color:var(--ink);border:1.5px solid var(--line2);
+  }
+  .hero-stats{
+    display:flex;gap:32px;justify-content:center;flex-wrap:wrap;
+    padding-top:24px;border-top:1px solid var(--line);
+  }
+  .stat{text-align:center}
+  .stat .num{font:800 28px/1 -apple-system,sans-serif;color:var(--ink)}
+  .stat .lbl{font-size:13px;color:var(--mut);margin-top:4px;font-weight:500}
+
+  /* ─── SECTIONS ─── */
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  .section-head{text-align:center;margin-bottom:40px}
+  .section-head h2{
+    font-size:30px;font-weight:800;letter-spacing:-.5px;color:var(--ink);
+    margin-bottom:8px;
+  }
+  .section-head p{color:var(--mut);max-width:600px;margin:0 auto;font-size:16px}
+
+  /* ─── ABOUT ─── */
+  .about-block{max-width:720px;margin:0 auto}
+  .about-block p{margin-bottom:16px;font-size:17px;line-height:1.75;color:var(--ink2)}
+  .about-block p strong{color:var(--ink)}
+  .about-callout{
+    background:linear-gradient(135deg,var(--gold-lt),var(--orange-lt));
+    border:1px solid #f0dfb5;border-radius:16px;padding:28px 32px;
+    margin:28px 0;text-align:center;
+  }
+  .about-callout p{font-size:18px;font-weight:600;color:var(--ink);margin:0}
+  .creds{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0;
+  }
+  .cred{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px;text-align:center;transition:border-color .15s;
+  }
+  .cred:hover{border-color:var(--gold)}
+  .cred .big{font:800 32px/1 -apple-system,sans-serif;color:var(--gold-dk);margin-bottom:6px}
+  .cred .desc{font-size:14px;color:var(--mut);line-height:1.5}
+
+  /* ─── REPOS ─── */
+  .repo-filters{
+    display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:32px;
+  }
+  .filter-btn{
+    padding:8px 18px;border-radius:999px;border:1.5px solid var(--line2);
+    background:var(--card);color:var(--mut);font-weight:600;font-size:14px;
+    cursor:pointer;transition:all .15s;
+  }
+  .filter-btn:hover{border-color:var(--blue);color:var(--blue)}
+  .filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .filter-btn .count{font-size:12px;opacity:.7;margin-left:4px}
+
+  .repo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.repo-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.repo-grid{grid-template-columns:1fr}}
+
+  .repo-card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px;transition:all .15s;display:flex;flex-direction:column;
+    text-decoration:none!important;color:inherit!important;
+  }
+  .repo-card:hover{
+    border-color:var(--gold);transform:translateY(-3px);
+    box-shadow:0 8px 28px rgba(0,0,0,.06);
+  }
+  .repo-card .cat{
+    font:700 11px/1 ui-monospace,monospace;letter-spacing:.5px;
+    padding:4px 10px;border-radius:999px;margin-bottom:12px;
+    display:inline-block;width:fit-content;
+  }
+  .cat-biz{background:var(--blue-lt);color:var(--blue-dk)}
+  .cat-growth{background:var(--green-lt);color:var(--green)}
+  .cat-dev{background:var(--orange-lt);color:var(--orange)}
+  .repo-card h3{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.35}
+  .repo-card p{font-size:13px;color:var(--mut);line-height:1.55;flex-grow:1;margin-bottom:12px}
+  .repo-card .meta{
+    display:flex;align-items:center;gap:10px;font-size:12px;color:var(--mut2);
+    padding-top:10px;border-top:1px solid var(--line);
+  }
+  .repo-card .meta .lang{font-weight:600;color:var(--mut)}
+  .repo-card .meta .gh{
+    margin-left:auto;color:var(--blue);font-weight:600;
+    display:flex;align-items:center;gap:4px;
+  }
+  .repo-card.unavailable{opacity:.5}
+  .repo-card.unavailable h3::after{content:" 🔒";font-size:13px}
+
+  /* ─── SERVICES ─── */
+  .service-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:700px){.service-grid{grid-template-columns:1fr}}
+  .service-card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:24px;transition:border-color .15s;position:relative;
+  }
+  .service-card:hover{border-color:var(--blue)}
+  .service-card .num{
+    font:800 14px/1 ui-monospace,monospace;color:var(--blue);
+    letter-spacing:1px;margin-bottom:10px;
+  }
+  .service-card h3{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px}
+  .service-card p{font-size:14px;color:var(--mut);line-height:1.6;margin-bottom:12px}
+  .service-card .price{
+    font:700 15px -apple-system,sans-serif;color:var(--green);
+    padding-top:8px;border-top:1px solid var(--line);
+  }
+
+  /* ─── WHAT WE DON'T DO ─── */
+  .dont-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:680px;margin:0 auto}
+  @media(max-width:600px){.dont-grid{grid-template-columns:1fr}}
+  .dont-item{
+    display:flex;align-items:flex-start;gap:10px;
+    padding:14px 18px;background:var(--bg2);border-radius:10px;
+    font-size:14px;color:var(--mut);
+  }
+  .dont-item .x{color:var(--red);font-weight:800;flex-shrink:0}
+
+  /* ─── PROMISE ─── */
+  .promise-box{
+    background:var(--ink);color:#fff;border-radius:20px;padding:48px 40px;
+    text-align:center;max-width:760px;margin:0 auto;
+  }
+  .promise-box h2{color:var(--gold);font-size:26px;font-weight:800;margin-bottom:16px}
+  .promise-box p{font-size:17px;line-height:1.7;color:#c5c5d8;margin-bottom:12px}
+  .promise-box .sign{font-weight:700;color:var(--gold);margin-top:20px;font-size:16px}
+
+  /* ─── START ─── */
+  .start-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:700px){.start-grid{grid-template-columns:1fr}}
+  .start-card{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:24px;text-align:center;transition:border-color .15s;
+  }
+  .start-card:hover{border-color:var(--teal)}
+  .start-card .icon{font-size:32px;margin-bottom:12px}
+  .start-card h3{font-size:17px;font-weight:700;color:var(--ink);margin-bottom:8px}
+  .start-card p{font-size:14px;color:var(--mut);line-height:1.55}
+  .start-card .cta{
+    display:inline-block;margin-top:14px;font-weight:700;font-size:14px;color:var(--teal);
+  }
+
+  /* ─── FOOTER ─── */
+  footer{padding:48px 0 64px;border-top:1px solid var(--line);text-align:center}
+  footer p{color:var(--mut);font-size:14px;margin-bottom:8px}
+  footer .brand{font-weight:800;color:var(--ink);font-size:16px;margin-bottom:12px}
+  footer .ask{
+    margin-top:16px;padding:16px 24px;background:var(--gold-lt);
+    border:1px solid #f0dfb5;border-radius:12px;display:inline-block;
+    font-size:14px;color:var(--gold-dk);font-weight:600;max-width:560px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="nav-brand">Your <span>AI Guy</span></a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#repos">Repos</a>
+      <a href="#services">Services</a>
+      <a href="#start">Start</a>
+      <a href="#start" class="nav-cta">Free Call →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="hero-badge"><span class="dot"></span> ALL REPOS FREE · OPEN SOURCE</div>
+    <h1>Everybody's selling AI something.<br><span class="hl">We give the software away.</span></h1>
+    <p class="tagline">AI agents. Automation that runs itself. It doesn't. You still need a human in the loop. So we give the software away — knowing some people will need help, and everybody needs a human guiding it.</p>
+    <div class="hero-ctas">
+      <a href="#repos" class="btn btn-primary">Browse 15 Repos →</a>
+      <a href="#start" class="btn btn-secondary">Book a Free Call</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">15+</div><div class="lbl">Open Source Repos</div></div>
+      <div class="stat"><div class="num">15+</div><div class="lbl">Years Go-To-Market</div></div>
+      <div class="stat"><div class="num">5+</div><div class="lbl">Years Building with AI</div></div>
+      <div class="stat"><div class="num">10+</div><div class="lbl">Years Building Software</div></div>
+    </div>
+  </div>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <div class="section-head">
+      <h2>About</h2>
+    </div>
+    <div class="about-block">
+      <p>The short version: <strong>I'm your AI guy.</strong> Ask me a question, I'll give you an answer. Paid client or not. The only difference is how fast I get back to you.</p>
+      <div class="about-callout">
+        <p>What we're actually good at.</p>
+      </div>
+      <div class="creds">
+        <div class="cred"><div class="big">15+</div><div class="desc">Years across go-to-market, biz ops, growth ops, sales, marketing, and team building</div></div>
+        <div class="cred"><div class="big">10+</div><div class="desc">Years building our own software internally</div></div>
+        <div class="cred"><div class="big">5+</div><div class="desc">Years doing it with AI</div></div>
+      </div>
+      <p>Everything we ship is built around <strong>BizOps</strong>, <strong>GrowthOps</strong>, and <strong>DevOps</strong> — because that's the work we've actually done.</p>
+    </div>
+  </section>
+
+  <!-- ═══ REPOS ═══ -->
+  <section id="repos">
+    <div class="section-head">
+      <h2>Open Source Repos</h2>
+      <p>Every repo we build is open source. Pick one, drop it into your agent, and have it explain itself. Fork it. Star it. Share it.</p>
+    </div>
+    <div class="repo-filters">
+      <button class="filter-btn active" data-filter="all">All <span class="count">(15)</span></button>
+      <button class="filter-btn" data-filter="biz">BizOps <span class="count">(5)</span></button>
+      <button class="filter-btn" data-filter="growth">GrowthOps <span class="count">(5)</span></button>
+      <button class="filter-btn" data-filter="dev">DevOps <span class="count">(5)</span></button>
+    </div>
+    <div class="repo-grid" id="repoGrid">
+
+      <!-- BizOps -->
+      <a class="repo-card" data-cat="biz" href="https://github.com/jbellsolutions/super-agent-sales-director">
+        <span class="cat cat-biz">BizOps</span>
+        <h3>Super Agent Sales Director</h3>
+        <p>AI-driven sales director agent that orchestrates outreach, follow-up, and pipeline management across multiple channels.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="biz" href="https://github.com/jbellsolutions/governance">
+        <span class="cat cat-biz">BizOps</span>
+        <h3>Governance</h3>
+        <p>Autonomous agent governance platform — CEO orchestrator, real-time web panel, multi-business management. Built on CrewAI + OpenSwarm + Paperclip.</p>
+        <div class="meta"><span class="lang">Go</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="biz" href="https://github.com/jbellsolutions/dial-desk-swarm">
+        <span class="cat cat-biz">BizOps</span>
+        <h3>Dial Desk Swarm</h3>
+        <p>Multi-agent call desk swarm — intake, scheduling, virtual assistant, slides, and video generation agents coordinated through a central server.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="biz" href="https://github.com/jbellsolutions/titans-of-direct-response-mastermind-council">
+        <span class="cat cat-biz">BizOps</span>
+        <h3>Titans of Direct Response</h3>
+        <p>18 copywriter agent system for productized positioning, messaging, and launch strategy. Modeled after the greatest direct response minds alive.</p>
+        <div class="meta"><span class="lang">Markdown</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="biz" href="https://github.com/jbellsolutions/jay-abraham-power-partnerships">
+        <span class="cat cat-biz">BizOps</span>
+        <h3>Jay Abraham Power Partnerships</h3>
+        <p>Strategic partnership framework agent system based on Jay Abraham's preeminent strategies for exponential growth through power partnerships.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <!-- GrowthOps -->
+      <a class="repo-card" data-cat="growth" href="https://github.com/jbellsolutions/experts-gtm-flywheel">
+        <span class="cat cat-growth">GrowthOps</span>
+        <h3>Experts GTM Flywheel</h3>
+        <p>Go-to-market flywheel system for experts and thought leaders — automated content, audience building, and conversion optimization.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="growth" href="https://github.com/jbellsolutions/ai-integraterz-cold-email">
+        <span class="cat cat-growth">GrowthOps</span>
+        <h3>AI Integraterz Cold Email</h3>
+        <p>Opus-orchestrated multi-agent system for personalized cold email at scale on Smartlead. Slack-driven, reply-aware, niche × offer × variant campaign axis.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="growth" href="https://github.com/jbellsolutions/Titan-Genome-Content-Multiplier">
+        <span class="cat cat-growth">GrowthOps</span>
+        <h3>Titan Genome Content Multiplier</h3>
+        <p>Content multiplication engine that takes one idea and produces 13+ content assets — courses, lead magnets, newsletters, social calendars, video plans, and more.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="growth" href="https://github.com/jbellsolutions/sovereign-audience-method">
+        <span class="cat cat-growth">GrowthOps</span>
+        <h3>Sovereign Audience Method</h3>
+        <p>Audience building methodology and agent system for creating owned audiences that don't depend on rented platforms or paid traffic.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="growth" href="https://github.com/jbellsolutions/genius-tap-content-system">
+        <span class="cat cat-growth">GrowthOps</span>
+        <h3>Genius Tap Content System</h3>
+        <p>Content system that taps into your genius — structured frameworks for turning expertise into scalable content that converts without sounding like AI.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <!-- DevOps -->
+      <a class="repo-card" data-cat="dev" href="https://github.com/jbellsolutions/super-saiyan-browser">
+        <span class="cat cat-dev">DevOps</span>
+        <h3>Super Saiyan Browser</h3>
+        <p>Agent plugin that routes browser automation to the right backend — Playwright, Bright Data, Hyperbrowser, Steel, Orgo. Power ladder from free to full desktop.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="dev" href="https://github.com/jbellsolutions/hermes-super-agent">
+        <span class="cat cat-dev">DevOps</span>
+        <h3>Hermes Super Agent</h3>
+        <p>Multi-agent fleet fabric on top of Hermes — A2A protocol + NATS event bus + Temporal durable workflows + Tier 2 VPS spawning. Run a fleet from one Telegram bot.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="dev" href="https://github.com/jbellsolutions/openswarm-builder">
+        <span class="cat cat-dev">DevOps</span>
+        <h3>OpenSwarm Builder</h3>
+        <p>Standalone OpenSwarm agent builder — design loop, approval gate, fleet materialization. Design, approve, and deploy multi-agent swarms.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="dev" href="https://github.com/jbellsolutions/hermes-desktop-os1">
+        <span class="cat cat-dev">DevOps</span>
+        <h3>Hermes Desktop OS1</h3>
+        <p>Native macOS workspace for Hermes Agent on Orgo cloud computers and SSH hosts. Terminal, sessions, kanban, skills, providers, and more in one app.</p>
+        <div class="meta"><span class="lang">Swift</span><span class="gh">GitHub →</span></div>
+      </a>
+
+      <a class="repo-card" data-cat="dev" href="https://github.com/jbellsolutions/sovereign-trades-method">
+        <span class="cat cat-dev">DevOps</span>
+        <h3>Sovereign Trades Method</h3>
+        <p>Autonomous trading method and agent system — sovereign infrastructure for independent trading operations with AI-assisted analysis.</p>
+        <div class="meta"><span class="lang">Python</span><span class="gh">GitHub →</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section id="services">
+    <div class="section-head">
+      <h2>Three Doors. Pick Whichever Fits.</h2>
+      <p>From $100/mo to fully custom builds. Whatever fits.</p>
+    </div>
+    <div class="service-grid">
+
+      <div class="service-card">
+        <div class="num">OPTION 1</div>
+        <h3>Coach me. Answer my questions. Help me learn.</h3>
+        <p>You don't want to manage anybody yet. You just want a real person to navigate this with you. Everybody should learn AI — we'll guide you. Includes our internal SuperAgent.</p>
+        <div class="price">Starts at $100/mo</div>
+      </div>
+
+      <div class="service-card">
+        <div class="num">OPTION 2</div>
+        <h3>Hire an in-house AI builder for me to manage.</h3>
+        <p>You don't want to babysit an agency. You don't want to chase freelancers for half-finished work. You want one dedicated person in-house who just builds for you. We'll recruit, hire, and place them. You manage them. They become your AI guy.</p>
+        <div class="price">Placement fee + retainer</div>
+      </div>
+
+      <div class="service-card">
+        <div class="num">OPTION 3</div>
+        <h3>I've got a tech team (or I am the tech person). Place someone with us.</h3>
+        <p>We recruit, hire, train, and develop them alongside you. If it doesn't work out, we find you someone new.</p>
+        <div class="price">Placement + training</div>
+      </div>
+
+      <div class="service-card">
+        <div class="num">OPTION 4</div>
+        <h3>Build me a full AI employee.</h3>
+        <p>You've got the infrastructure dialed in. You're ready for an AI employee that does a full role — operations, sales assistant, role-specific. This is custom builds, like we did with SpeakerAgent.ai. Industry- and stack-dependent.</p>
+        <div class="price">Custom quote</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ WHAT WE DON'T DO ═══ -->
+  <section>
+    <div class="section-head">
+      <h2>What We Don't Do</h2>
+    </div>
+    <div class="dont-grid">
+      <div class="dont-item"><span class="x">✕</span> One-off workflows</div>
+      <div class="dont-item"><span class="x">✕</span> Tech maintenance</div>
+      <div class="dont-item"><span class="x">✕</span> Generic dev work or "just code this"</div>
+      <div class="dont-item"><span class="x">✕</span> Recruiting for anything outside AI software / AI-trained operators (EA, PM, recruiting, sales, marketing, devs we train to be your AI guy)</div>
+    </div>
+  </section>
+
+  <!-- ═══ PROMISE ═══ -->
+  <section>
+    <div class="promise-box">
+      <h2>The Promise</h2>
+      <p>I'll be your AI guy. Ask me a question, I got you an answer.</p>
+      <p>Whether you pay me or not, I'm here to help. I try to put good stuff out there. I try to answer everybody.</p>
+      <p>End of the day, I just want to help people cut through the marketplace blah-blah-blah and get some clarity.</p>
+      <div class="sign">— Your AI Guy</div>
+    </div>
+  </section>
+
+  <!-- ═══ START ═══ -->
+  <section id="start">
+    <div class="section-head">
+      <h2>How to Actually Start</h2>
+      <p>The only ask: share a post, star a repo, join the newsletter, tell one person. That's how we keep helping without running ads.</p>
+    </div>
+    <div class="start-grid">
+      <div class="start-card">
+        <div class="icon">📦</div>
+        <h3>Free Stuff</h3>
+        <p>Every repo we build is open source. Pick one → click through to GitHub → drop it into your agent and have it explain itself. Fork it. Star it. Share it.</p>
+        <a href="#repos" class="cta">Browse Repos →</a>
+      </div>
+      <div class="start-card">
+        <div class="icon">📞</div>
+        <h3>Free Call</h3>
+        <p>First one's free. 15 minutes if you've got questions. 30 minutes if you want to walk through software with me.</p>
+        <a href="mailto:hello@youraiguy.com?subject=Free%20Call" class="cta">Book a Call →</a>
+      </div>
+      <div class="start-card">
+        <div class="icon">📰</div>
+        <h3>The Newsletter</h3>
+        <p>It's called Open Source. We read every repo change on ours and on thousands of others, watch the model and framework releases, and synthesize what actually matters that week. Join it.</p>
+        <a href="mailto:hello@youraiguy.com?subject=Newsletter" class="cta">Join Newsletter →</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Your AI Guy</div>
+    <p>15+ years across go-to-market, biz ops, growth ops, sales, marketing, and team building.</p>
+    <p>10 years building our own software. 5 years doing it with AI.</p>
+    <p>BizOps · GrowthOps · DevOps — because that's the work we've actually done.</p>
+    <div class="ask">
+      The only ask: share a post, star a repo, join the newsletter, tell one person.<br>That's how we keep helping without running ads.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Category filtering
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      document.querySelectorAll('.repo-card').forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
